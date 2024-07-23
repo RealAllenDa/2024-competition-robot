@@ -12,6 +12,7 @@ import com.pathplanner.lib.util.PathPlannerLogging;
 import com.pathplanner.lib.util.ReplanningConfig;
 import edu.wpi.first.math.VecBuilder;
 import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.units.Measure;
 import edu.wpi.first.units.Time;
@@ -114,7 +115,7 @@ public class SwerveSubsystem extends SwerveDrivetrain implements Subsystem {
      * Apply a {@link SwerveRequest} to the SwerveSubsystem
      *
      * @param requestSupplier A lambda expression returns {@link SwerveRequest}
-     * @return A {@link Command}
+     * @return A {@link  Command}
      */
     public Command applyRequest(Supplier<SwerveRequest> requestSupplier) {
         return run(() -> this.setControl(requestSupplier.get()));
@@ -150,5 +151,9 @@ public class SwerveSubsystem extends SwerveDrivetrain implements Subsystem {
     @AutoLogOutput(key = "Odometry/Robot")
     public Pose2d getPose() {
         return m_odometry.getEstimatedPosition();
+    }
+
+    public Rotation2d getOffset(){
+        return this.m_fieldRelativeOffset;
     }
 }

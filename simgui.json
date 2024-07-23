@@ -60,6 +60,9 @@
         "Auto Chooser": {
           "open": true
         },
+        "TunableNumbers": {
+          "open": true
+        },
         "open": true
       },
       "State": {
@@ -83,8 +86,5 @@
       }
     },
     "visible": true
-  },
-  "NetworkTables View": {
-    "visible": false
   }
 }

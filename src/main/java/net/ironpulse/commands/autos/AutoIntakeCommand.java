@@ -38,8 +38,8 @@ public class AutoIntakeCommand extends Command {
 
     @Override
     public void execute() {
-        intakerSubsystem.getIo().setIntakeVoltage(intakeVoltage);
-        indexerSubsystem.getIo().setIndexVoltage(indexVoltage);
+        intakerSubsystem.getIo().setIntakeVoltage(Volts.of(-5.5));
+        indexerSubsystem.getIo().setIndexVoltage(Volts.of(4));
     }
 
     @Override
@@ -50,6 +50,7 @@ public class AutoIntakeCommand extends Command {
         autoIntaking = false;
     }
 
+    
     @Override
     public boolean isFinished() {
         return beamBreakSubsystem.getInputs().isIndexerBeamBreakOn &&

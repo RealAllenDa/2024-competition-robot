@@ -33,7 +33,6 @@ public class IndexCommand extends Command {
 
     @Override
     public boolean isFinished() {
-        return beamBreakSubsystem.getInputs().isIndexerBeamBreakOn &&
-                !beamBreakSubsystem.getInputs().isIntakerBeamBreakOn;
+        return beamBreakSubsystem.getInputs().isIndexerBeamBreakOn;
     }
 }

@@ -6,6 +6,7 @@ import com.ctre.phoenix6.mechanisms.swerve.SwerveRequest;
 import com.ctre.phoenix6.mechanisms.swerve.utility.PhoenixPIDController;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
+import net.ironpulse.Constants;
 
 @SuppressWarnings("PMD.DataflowAnomalyAnalysis")
 public class FieldCentricTargetHeading implements SwerveRequest {
@@ -57,10 +58,14 @@ public class FieldCentricTargetHeading implements SwerveRequest {
             SwerveControlRequestParameters parameters,
             SwerveModule... modulesToApply
     ) {
+        var ks = Constants.HeadingController.HEADING_KS.get();
         var toApplyX = VelocityX;
         var toApplyY = VelocityY;
         var toApplyOmega = HeadingController.calculate(
                 CurrentTX, 0, parameters.timestamp);
+        if(Math.abs(CurrentTX) >= 0.3){
+            toApplyOmega += Math.signum(toApplyOmega) * ks;
+            }
 
         if (Math.hypot(toApplyX, toApplyY) < Deadband) {
             toApplyX = 0;

@@ -3,6 +3,8 @@ package net.ironpulse.subsystems.shooter;
 import edu.wpi.first.units.*;
 import org.littletonrobotics.junction.AutoLog;
 
+import com.ctre.phoenix6.configs.TalonFXConfiguration;
+
 import static edu.wpi.first.units.Units.*;
 
 public interface ShooterIO {
@@ -48,4 +50,6 @@ public interface ShooterIO {
     void setArmBrakeMode(boolean isCoast);
 
     void setPullerBrakeMode(boolean isCoast);
+
+    boolean setArmConfig(double p, double i, double d);
 }
